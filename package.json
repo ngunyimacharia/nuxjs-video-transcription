@@ -9,9 +9,14 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@google-cloud/speech": "^4.8.0",
+    "@google-cloud/storage": "^5.14.1",
     "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "express": "^4.17.1",
+    "nuxt": "^2.15.7",
+    "request": "^2.88.2",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.2.0",

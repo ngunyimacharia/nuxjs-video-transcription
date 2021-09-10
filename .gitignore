@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Google service account file
+service-account.json
