@@ -9,10 +9,9 @@ const express = require('express')
 
 app.use(express.json())
 
-
 app.all('/gcs-store', async (req, res) => {
 
-    const url = "https://res.cloudinary.com/hackit-africa/video/upload/v1631261379/nuxtjs-video-transcription/mestkweza.mp3";
+    const url = req.body.url;
 
     const fetch = require('node-fetch');
     const { Storage } = require('@google-cloud/storage');
@@ -35,7 +34,10 @@ app.all('/gcs-store', async (req, res) => {
             res.body.pipe(writeStream);
         });
 
-    return res.json({ resp: true });
+    const gcsUrl = file.publicUrl()
+        .replace("https://storage.googleapis.com/", "gs://");
+
+    return res.json({ gcsUrl });
 })
 
 app.all('/trascribe', async (req, res) => {
@@ -50,8 +52,12 @@ app.all('/trascribe', async (req, res) => {
         enableSpeakerDiarization: true,
     };
 
+    const url = req.body.url;
+
+    console.log(url);
+
     const audio = {
-        uri: "gs://nuxtjs-video-trascription/w29YNafkU.mp3",
+        uri: url
     };
 
     const request = {
@@ -61,8 +67,6 @@ app.all('/trascribe', async (req, res) => {
 
     // Detects speech in the audio file.
     const [response] = await client.recognize(request);
-
-    console.log(response.results);
 
     return res.json(response);
 })
