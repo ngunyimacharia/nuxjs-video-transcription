@@ -222,12 +222,17 @@ export default {
           format: "mp3",
         })
         .replace("f_auto,q_auto/", "");
-      const { gcsUrl } = await this.$axios.$post("/api/gcs-store", { url });
+      const { gcsUrl } = await this.$axios.$post(
+        `${window.location.href}api/gcs-store`,
+        { url }
+      );
       return gcsUrl;
     },
 
     async transcribe() {
-      return await this.$axios.$post("/api/trascribe", { url: this.gcsUrl });
+      return await this.$axios.$post(`${window.location.href}api/trascribe`, {
+        url: this.gcsUrl,
+      });
     },
   },
 };
