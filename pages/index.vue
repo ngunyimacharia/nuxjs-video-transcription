@@ -16,7 +16,7 @@ export default {
       };
 
       const audio = {
-        uri: "https://res.cloudinary.com/hackit-africa/video/upload/v1631261379/nuxtjs-video-transcription/mestkweza.mp4",
+        uri: "gs://nuxtjs-video-trascription/mestkweza.mp3",
       };
 
       const data = {
